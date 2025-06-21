@@ -1,0 +1,2 @@
+[console_scripts]
+monitor360-api = monitor360.__main__:uvicorn.run

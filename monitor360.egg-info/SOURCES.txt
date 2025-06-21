@@ -1,0 +1,12 @@
+pyproject.toml
+app/__init__.py
+app/main.py
+app/supabase_client.py
+monitor360/__init__.py
+monitor360/__main__.py
+monitor360.egg-info/PKG-INFO
+monitor360.egg-info/SOURCES.txt
+monitor360.egg-info/dependency_links.txt
+monitor360.egg-info/entry_points.txt
+monitor360.egg-info/requires.txt
+monitor360.egg-info/top_level.txt

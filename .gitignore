@@ -1,0 +1,52 @@
+# Entorno virtual (Windows/Linux/Mac)
+venv/
+.env
+.env.*
+
+# Archivos de configuración sensibles
+*.env
+*.env.*
+
+# Archivos Python generados
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+
+# Logs y outputs
+*.log
+*.bak
+*.tmp
+*.swp
+*.swo
+*.DS_Store
+.monitor360.log
+
+# Reportes generados
+/reports/
+*.rsc
+*.backup
+
+# CSV de clientes (puede contener datos sensibles)
+Lista de Usuarios.csv
+asociaciones.csv
+mikrotik_credentials.json
+
+# Caché de herramientas
+.cache/
+pytest_cache/
+.mypy_cache/
+ruff_cache/
+
+# Archivos de herramientas de desarrollo
+.pre-commit-config.yaml~
+*.orig
+*.rej
+
+# Jupyter Notebooks (si los usás ocasionalmente)
+.ipynb_checkpoints/
+
+# Archivos del sistema
+Thumbs.db
+ehthumbs.db

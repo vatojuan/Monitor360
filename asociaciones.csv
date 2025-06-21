@@ -1,0 +1,76 @@
+cliente_id,nombre,plan,ip,dispositivo_id,mac,hostname
+,Velez Cristian  ACTIVO,Familiar 3 mb,172.24.51.14,dcb32f07-b2fe-43af-ba26-c22495d687d5,,172.24.51.14
+,Perez Ruben Daniel  ACTIVO,Nuevo Plan  50x50,172.24.76.3,2ec4a555-3d82-4214-99ec-44236577aa1c,,172.24.76.3
+,Pérez Coronel José Augusto  ACTIVO,Corporativo 9 mb,172.24.51.13,6bef862f-3f5c-4c85-964a-57d3994a5f16,,172.24.51.13
+,Bastias Brian Damian  ACTIVO,Premium 6 mb,172.24.76.50,40266b48-b3f6-4ebb-9dd6-e25151420932,,172.24.76.50
+,Adi Alejandra  ACTIVO,Premium 6 mb,172.24.76.31,6247ced4-bc81-4daf-8284-1da5bdcfdac1,,172.24.76.31
+,Crespi Bianca Josefina  ACTIVO,Corporativo 9 mb,172.24.51.27,d7aed01e-d06e-4795-9b71-35d951bcc2b9,,172.24.51.27
+,Flores Miguel  ACTIVO,Premium 6 mb,172.24.51.36,40f8915f-d671-4571-a24b-f94cd6070dcf,,172.24.51.36
+,Freyre Carolina  ACTIVO,Corporativo 9 mb,172.24.76.10,8a9e71e8-36f1-47df-8fe4-1efb969d6e64,,172.24.76.10
+,Alvino Huaquipa Laura Valeria  ACTIVO,Familiar 3 mb,172.24.51.38,d120c1eb-0499-436c-b960-4c19977a4dc4,,172.24.51.38
+,Varela Leonardo David  ACTIVO,Corporativo 9 mb,172.24.51.92,879b5d10-146c-4f0b-bad0-07cf2fe008df,,172.24.51.92
+,Canabal Maria Eugenia  ACTIVO,Personalizado 13/2 mb,172.24.51.63,7138e288-8e71-4182-ae7f-b2b594222cb2,,172.24.51.63
+,Leguiza Osvaldo Alejandro  ACTIVO,Familiar 3 mb,172.24.51.17,9d945457-2ad4-4cff-8135-ee1c563a95b4,,172.24.51.17
+,Camacho Ronal Alejandro  ACTIVO,Familiar 3 mb,172.24.76.13,4139f0db-385e-4e5c-848b-d60e600efa10,,172.24.76.13
+,Robledo Juan Marcelo  ACTIVO,Premium 6 mb,172.24.76.18,6c07518f-c3b6-4d04-9581-a0dc0a9b6f50,,172.24.76.18
+,Tejerina Carina Magdalena  ACTIVO,Premium 6 mb,172.24.75.14,b0e06d7b-2556-43ca-ba03-be287cb87202,,172.24.75.14
+,Mendez Marcelo Italo  ACTIVO,Premium 6 mb,172.24.76.20,a4903b9a-1e37-42f2-8229-4b3a97e99918,,172.24.76.20
+,Balestra Ricardo Nazareno  ACTIVO,Premium 6 mb,172.24.51.20,b4d4bee8-ee48-47a7-b4a1-71430bf8f905,,172.24.51.20
+,Baeza Patricia  ACTIVO,Corporativo 9 mb,172.24.76.53,d8874e8a-4001-4da2-9a08-b9cefdf8a6ea,,172.24.76.53
+,Juarez Julieta Tamara  ACTIVO,Premium 6 mb,172.24.51.47,5414b063-58f7-4cb5-ba89-b67d702d2361,,172.24.51.47
+,Quispe Celeste  ACTIVO,Familiar 3 mb,172.24.51.4,1bfb193f-c28d-4ebc-bd95-8d98d6bd7790,,172.24.51.4
+,Castro Virginia  ACTIVO,Pyme 2 mb,172.24.76.23,f456eae5-557c-44a6-806b-6f656a62ba23,,172.24.76.23
+,Cuellar Lautaro  ACTIVO,Premium 6 mb,172.24.76.9,706bbab9-bdcd-4052-87d7-b77765e734d0,,172.24.76.9
+,Romano Jesica Paola  ACTIVO,Familiar 3 mb,172.24.76.25,7d8b3b87-b5be-401a-beae-3301454eb13d,,172.24.76.25
+,Abrego Juan Antonio  ACTIVO,Premium 6 mb,172.24.76.32,8311fdc4-1469-44f4-91ef-ededa1fd66f8,,172.24.76.32
+,Romano Ramon Ernesto  ACTIVO,Premium 6 mb,172.24.76.40,ba529b57-bc33-45cc-b262-77052d0ec8ba,,172.24.76.40
+,Pardo Claudia Marianela  ACTIVO,Personalizado 13/2 mb,172.24.51.86,410022a8-c0b4-4f0f-863f-dca0308af526,,172.24.51.86
+,Rosa Ortiz (Casa de Aguilera)  ACTIVO,Familiar 3 mb,172.24.51.15,2ba772b0-c6ea-4505-97af-d555acc23cd9,,172.24.51.15
+,Guiñazu Maribel  ACTIVO,Familiar 3 mb,172.24.76.11,41fc38f6-1e53-4e6b-a020-bd5d971e85a1,,172.24.76.11
+,Enrique Omar Zingaretti  SUSPENDIDO,Premium 6 mb,172.24.76.51,193b3f50-ea91-424d-8297-7ae1b35f56c3,,172.24.76.51
+,Chaar Maria Susana  ACTIVO,Premium 6 mb,172.24.76.15,e512baa4-c81a-46ba-8480-8acf4a0950ea,,172.24.76.15
+,Miguel Alejandro Cirica  ACTIVO,Premium 6 mb,172.24.76.42,52550c39-4cff-46a5-a02e-ed8d352e8f02,,172.24.76.42
+,Abrego Jesús Nolasco   ACTIVO,Premium 6 mb,172.24.76.22,131d745e-852f-4d53-a233-01d8facfa070,,172.24.76.22
+,La Farruca (Produmen SA)  ACTIVO,Premium 6 mb,172.24.40.39,7bcbede2-ae99-4e95-b52d-eb353cbd19d5,,172.24.40.39
+,Bautista Juan Emanuel  ACTIVO,Corporativo 9 mb,172.24.76.46,a2db98f4-2bde-42e4-8da5-4177643f0235,,172.24.76.46
+,Raquel Miriam Pardo  ACTIVO,Corporativo 9 mb,172.24.51.31,c2b5d556-d026-485b-87ce-25198eddc801,,172.24.51.31
+,Calderón Fernanda Natali   ACTIVO,Corporativo 9 mb,172.24.76.30,e180cd55-e4f6-41a2-87da-338fadaaae20,,172.24.76.30
+,Bejarano Felipe Neri   ACTIVO,Pyme 2 mb,172.24.51.87,a90bf05e-db9b-4524-9d03-0531260b9182,,172.24.51.87
+,Maldonado Edgar Emmanuel  ACTIVO,Corporativo 9 mb,172.24.75.21,70e2f437-69a8-402a-859c-906e1e594217,,172.24.75.21
+,Milla Darío Rolando  ACTIVO,Familiar 3 mb,172.24.51.46,75ce867e-0220-42e6-bbda-587bc53ba414,,172.24.51.46
+,Jeldes María Vanesa  ACTIVO,Corporativo 9 mb,172.24.51.93,0f9898a5-f89a-413e-a53b-3370d8f33a25,,172.24.51.93
+,Torres Diego Osvaldo  ACTIVO,Corporativo 9 mb,172.24.76.8,9ff89150-3fc8-4a08-9c23-b1158b49d5bf,,172.24.76.8
+,Carlos Miguel Rivero  ACTIVO,Premium 6 mb,172.24.51.53,5d43f349-3ceb-454a-9e9e-e3724c487ce4,,172.24.51.53
+,Melian Leguiza Rodrigo Alexander  ACTIVO,Corporativo 9 mb,172.24.51.83,779e5ca8-f083-4d28-9dc5-5e0799b40fb0,,172.24.51.83
+,Castillo Concepción Ambrocio  ACTIVO,Corporativo 9 mb,172.24.51.89,7795dbbb-8df1-44b0-8585-2d76b2dca5c7,,172.24.51.89
+,Anzorena Carolina Celeste  ACTIVO,Personalizado 13/2 mb,172.24.51.65,bb35aa6e-b004-499e-b1e3-1d9eabeeab42,,172.24.51.65
+,Ruarte Micaela Aldana  ACTIVO,Corporativo 9 mb,172.24.78.23,3fd52c5d-f9ad-4444-82fe-c3a6100ce115,,172.24.78.23
+,Vergara Ceferino Pascual   ACTIVO,Corporativo 9 mb,172.24.76.56,30c5fb25-3a85-4dec-b660-9862cf27b702,,172.24.76.56
+,Escudero Darío Ruben  ACTIVO,Familiar 3 mb,172.24.51.39,0627f5de-b46c-45ef-8baa-1003150b585a,,172.24.51.39
+,María Eugenia Ovejero  ACTIVO,Premium 6 mb,172.24.76.27,70a90930-b903-4020-9bb9-e1f2eaeae7e9,,172.24.76.27
+,Henríquez Samuel David  ACTIVO,Personalizado 13/2 mb,172.24.76.12,91686ba0-16dc-4793-bff0-7d988e5c2d18,,172.24.76.12
+,Escalona Jesica Gisel  ACTIVO,Premium 6 mb,172.24.78.68,e0dccdf8-4808-45a8-b1d5-e14b5ba99271,,172.24.78.68
+,BODEGAS ESMERALDA SA  ACTIVO,Dedicado 10 MB,172.24.51.52,ee8d02c6-1eb0-4e97-8357-a4fd077ad8f1,,172.24.51.52
+,Patricia Alejandra Velarde  ACTIVO,Corporativo 9 mb,172.24.76.33,5feedcd8-ce20-4d7e-ae5a-e4acffcf39e8,,172.24.76.33
+,Irina Micaela Bustamante  ACTIVO,Premium 6 mb,172.24.76.21,96786eff-49f0-4b1a-a23e-4980b5da6ada,,172.24.76.21
+,Barquesi Jorge Luis  SUSPENDIDO,Premium 6 mb,172.24.51.101,3849617a-c6f2-44d3-b4c0-289272f6c9b8,,172.24.51.101
+,Carmona Fresia del Valle  ACTIVO,Corporativo 9 mb,172.24.51.105,485ff4ac-b7d5-4f59-8e8e-130dc89ddce2,,172.24.51.105
+,García Yesica Yamila  ACTIVO,Premium 6 mb,172.24.76.28,1907f8c5-b3dc-448e-b240-f398c0fea006,,172.24.76.28
+,Zeverini Salvatierra Sebastián Pablo  ACTIVO,Premium 6 mb,172.24.76.26,d3edb22b-37d3-40b5-b5e6-033e7502bce2,,172.24.76.26
+,Sosa María Evelyn Celeste  ACTIVO,Premium 6 mb,172.24.76.34,bc688c0f-c68a-4ead-9944-ba090f28fcbb,,172.24.76.34
+,Ocampo Delia Romina  ACTIVO,Familiar 3 mb,172.24.76.35,4f0ba0b8-823b-4366-84f5-c4814b217703,,172.24.76.35
+,Aguirre Benito  ACTIVO,Premium 6 mb,172.24.76.4,69d66633-09c2-4a55-b182-46eb735952cf,,172.24.76.4
+,Nuñez Juan Esteban  ACTIVO,Premium 6 mb,172.24.51.40,e02ffe52-6cb2-4b06-a9fd-8cf8dd28ec12,,172.24.51.40
+,Lisardo Cazón Omar  ACTIVO,Corporativo 9 mb,172.24.51.82,748c2c35-ff71-455b-b638-3414f51b8342,,172.24.51.82
+,Pamela Lusmila Galdame  ACTIVO,Personalizado 13/2 mb,172.24.76.54,7efed1b8-1617-4d5d-96f1-33f54bf171a3,,172.24.76.54
+,García Cintia Judit  ACTIVO,Premium 6 mb,172.24.76.58,0be283ff-71e0-4d2b-8e63-8ecf0fcea94e,,172.24.76.58
+,Guzmán Nelson Nicolás  ACTIVO,Premium 6 mb,172.24.76.45,2fb0e04e-2983-4c3f-bcd9-f9cbe8fbb826,,172.24.76.45
+,Anzorena Noelia Edith  ACTIVO,Corporativo 9 mb,172.24.76.64,bbcf1ccb-9554-4df4-9975-98115d95627d,,172.24.76.64
+,Wines Solutions Services S.A.  ACTIVO,Personalizado 13/2 mb,172.24.51.29,dafcefa0-61d7-46b2-8bd4-4d346e5107b2,,172.24.51.29
+,Obejero Andrea Estefania  ACTIVO,Premium 6 mb,172.24.76.60,14add099-82e8-42fc-b3b5-bf31d234e1f6,,172.24.76.60
+,Jofre Noemi Graciela   ACTIVO,Premium 6 mb,172.24.76.61,9a790d6a-6cfe-42b5-93e4-04a171c28954,,172.24.76.61
+,Mendez Benjamín Eduardo  ACTIVO,Premium 6 mb,172.24.76.14,cd816189-c0a8-4abd-8fa0-5fa4f204ee39,,172.24.76.14
+,Ferrer Jessica Emiliana  ACTIVO,Familiar 3 mb,172.24.76.70,468b3115-bb49-46da-9fed-9e3dabcd1fd8,,172.24.76.70
+,Sandra Isabel Marcelino  ACTIVO,Dedicado 10 MB,172.24.76.69,a47c6716-39e0-474f-8aa2-99a52ed4ba1d,,172.24.76.69
+,Merma Copa Estevan  ACTIVO,Familiar 3 mb,172.24.76.38,ce1e87cd-c092-4093-86bf-12be6ac0d3eb,,172.24.76.38
+,Posada Rosana  ACTIVO,Premium 6 mb,172.24.51.43,e687f169-a01f-412d-90f0-cd2b690f5c15,,172.24.51.43
