@@ -1,4 +1,6 @@
+#!/usr/bin/env python3
 # File: app/routers/monitoring.py
+import logging
 from typing import Any, Dict, List
 
 from fastapi import APIRouter, HTTPException
@@ -10,7 +12,9 @@ from app.services.topology_enricher import get_enriched_topology
 from app.services.trunk_service import get_trunk_topology
 from app.services.uisp_service import get_uisp_devices
 
+logger = logging.getLogger(__name__)
 router = APIRouter()
+
 
 # ──────────────────────────────────────────────
 # Pydantic Schemas
@@ -51,6 +55,7 @@ def get_full_status(request: StatusRequest):
         uisp_devices = get_uisp_devices()
         return {"mikrotik": mikrotik_status, "uisp": uisp_devices}
     except Exception as e:
+        logger.error("Error en /status", exc_info=e)
         raise HTTPException(status_code=500, detail=f"Error en status: {e}")
 
 
@@ -62,6 +67,7 @@ def run_monitor(request: RunRequest):
     try:
         return monitor_and_store(request.router_ips, request.client_ips)
     except Exception as e:
+        logger.error("Error en /run", exc_info=e)
         raise HTTPException(status_code=500, detail=f"Error ejecutando monitoreo: {e}")
 
 
@@ -73,6 +79,10 @@ def enriched_topology(request: TopologyRequest):
     try:
         return get_enriched_topology(request.ip_list)
     except Exception as e:
+        # 📌 Aquí imprimimos el traceback completo para debug
+        logger.error("Fallo en /topology", exc_info=e)
+        # También podríamos usar traceback.print_exc()
+        # traceback.print_exc()
         raise HTTPException(status_code=500, detail=f"Error generando topología: {e}")
 
 
@@ -84,6 +94,7 @@ def trunk_topology(request: TopologyRequest):
     try:
         return get_trunk_topology(request.ip_list)
     except Exception as e:
+        logger.error("Error en /trunk", exc_info=e)
         raise HTTPException(
             status_code=500, detail=f"Error generando topología troncal: {e}"
         )
