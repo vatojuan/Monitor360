@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # File: app/routers/monitoring.py
+
 import logging
+import traceback
 from typing import Any, Dict, List
 
 from fastapi import APIRouter, HTTPException
@@ -78,12 +80,12 @@ def enriched_topology(request: TopologyRequest):
     """
     try:
         return get_enriched_topology(request.ip_list)
-    except Exception as e:
-        # 📌 Aquí imprimimos el traceback completo para debug
-        logger.error("Fallo en /topology", exc_info=e)
-        # También podríamos usar traceback.print_exc()
-        # traceback.print_exc()
-        raise HTTPException(status_code=500, detail=f"Error generando topología: {e}")
+    except Exception:
+        # 📌 Capturamos y logueamos el traceback completo
+        tb = traceback.format_exc()
+        logger.error("Fallo en /topology:\n%s", tb)
+        # Devolvemos el traceback en el detalle para facilitar debugging
+        raise HTTPException(status_code=500, detail=tb)
 
 
 @router.post("/trunk", response_model=Dict[str, Any], tags=["Topología Troncal"])
