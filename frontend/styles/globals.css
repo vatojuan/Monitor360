@@ -1,0 +1,15 @@
+/* File: frontend/styles/globals.css */
+/* Que todo el árbol use 100 % de alto/ancho y sin márgenes */
+html, body, #__next {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+/* Opcional: tailwind-like helpers si no usas Tailwind todavía */
+.w-screen  { width: 100vw; }
+.h-screen  { height: 100vh; }
+.w-full    { width: 100%; }
+.h-full    { height: 100%; }
+.flex      { display: flex; }
+.flex-grow { flex: 1 1 0%; }
