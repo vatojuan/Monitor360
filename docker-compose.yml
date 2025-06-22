@@ -1,0 +1,65 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: monitor360-backend
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - ./data:/data
+    ports:
+      - "8000:8000"
+    command: uvicorn monitor360:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - loki
+      - grafana
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.frontend
+    container_name: monitor360-frontend
+    env_file:
+      - frontend/.env.local
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+  # el comando ya está en el Dockerfile (next start)
+    volumes: []   # sin bind-mount en producción
+
+  loki:
+    image: grafana/loki:2.8.0
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+
+  promtail:
+    image: grafana/promtail:2.8.0
+    container_name: promtail
+    volumes:
+      - /var/log:/var/log
+      - ./promtail-config.yaml:/etc/promtail/config.yaml
+    command: -config.file=/etc/promtail/config.yaml
+    depends_on:
+      - loki
+
+  grafana:
+    image: grafana/grafana:9.4.7
+    container_name: grafana
+    ports:
+      - "3001:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: "admin"
+    depends_on:
+      - loki
+
+volumes:
+  grafana-data:

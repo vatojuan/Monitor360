@@ -1,0 +1,18 @@
+FROM python:3.11-slim AS builder
+
+WORKDIR /app
+
+# Copiar archivos necesarios para instalar dependencias
+COPY pyproject.toml poetry.lock* ./
+
+# Instalar las dependencias declaradas (incluyendo opcionales si hay)
+RUN pip install --no-cache-dir .
+
+# Copiar el resto del proyecto
+COPY . .
+
+# Exponer el puerto de la API
+EXPOSE 8000
+
+# Ejecutar la app FastAPI
+CMD ["uvicorn", "monitor360:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]

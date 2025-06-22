@@ -1,0 +1,26 @@
+# ---------- etapa de build ----------
+FROM node:20-bookworm AS builder
+
+WORKDIR /app
+COPY frontend/package*.json ./
+RUN npm ci
+
+COPY frontend/ ./
+RUN npm run build              # genera la carpeta .next/
+
+# ---------- etapa de runtime ----------
+FROM node:20-bookworm AS runtime
+
+WORKDIR /app
+ENV NODE_ENV=production
+
+# Copiamos solo lo necesario desde el builder
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/package*.json ./
+
+# Instalamos solo dependencias de producción
+RUN npm ci --omit=dev
+
+EXPOSE 3000
+CMD ["npm", "run", "start"]    # usa `next start`

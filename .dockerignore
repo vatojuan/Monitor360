@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.log
+
+# Virtual environment
+venv/
+
+# Editor configs
+.vscode/
+.idea/
+
+# Sistema de control de versiones
+.git/
+.gitignore
+
+# Archivos sensibles o temporales
+.env
+.env.local
+
+# Datos y reportes
+*.csv
+*.json
+*.sqlite
+*.db
+*.bak
+reports/
+data/
+
+# Frontend
+.next/
+node_modules/
+frontend/.next/
+frontend/node_modules/

@@ -4,9 +4,9 @@ Servicio de clientes: carga CSV y asocia a dispositivos UISP.
 Incluye heurística avanzada:
   1. IP exacta
   2. MAC exacta
-  3. Nombre exacto
+  3. Nombre exacto (case-sensitive)
   4. IP misma subred /24
-  5. Nombre similar (difflib)
+  5. Nombre similar (fuzzy)
 """
 
 import ipaddress
@@ -41,32 +41,28 @@ def associate_clients_to_devices(
 
     Retorna lista de dicts con:
       - cliente_nombre
-      - plan (si existe en CSV)
+      - plan (si existe)
       - ip
       - cliente_mac
       - matched (bool)
-      - método de matching
-      - similarity (solo para fuzzy)
-      - dispositivo_id, hostname, uisp_ip, uisp_mac si matched
+      - método (ip_exact, mac_exact, name_exact, subnet_24, name_fuzzy)
+      - similarity (solo para name_fuzzy)
+      - dispositivo_id, hostname, uisp_ip, uisp_mac, uisp_name si matched
     """
     asociaciones: List[Dict] = []
-    # Mapas para búsqueda rápida
+    # Mapas de acceso rápido
     ip_map = {dev.get("ipAddress"): dev for dev in uisp_devices if dev.get("ipAddress")}
-    mac_map = {
-        (dev.get("mac") or dev.get("identification", {}).get("mac", "")).lower(): dev
-        for dev in uisp_devices
-    }
-    name_map = {
-        dev.get("identification", {}).get("name", "").lower(): dev
-        for dev in uisp_devices
-        if dev.get("identification", {}).get("name")
-    }
+    mac_map = {}
+    for dev in uisp_devices:
+        mac = (dev.get("mac") or dev.get("identification", {}).get("mac", "")).lower()
+        if mac:
+            mac_map[mac] = dev
 
     for _, row in client_df.iterrows():
         client_ip = str(row.get("ip") or row.get("ip_address") or "").strip()
         client_mac = str(row.get("mac") or "").strip().lower()
-        client_name = str(row.get("nombre") or row.get("name") or "").strip().lower()
-
+        client_name_raw = str(row.get("nombre") or row.get("name") or "").strip()
+        client_name = client_name_raw
         match = None
         method = None
         similarity = None
@@ -79,12 +75,16 @@ def associate_clients_to_devices(
         elif client_mac and client_mac in mac_map:
             match = mac_map[client_mac]
             method = "mac_exact"
-        # 3. Nombre exacto
-        elif client_name and client_name in name_map:
-            match = name_map[client_name]
-            method = "name_exact"
+        # 3. Nombre exacto (case-sensitive)
+        elif client_name:
+            for dev in uisp_devices:
+                dev_name = dev.get("identification", {}).get("name")
+                if dev_name and dev_name == client_name:
+                    match = dev
+                    method = "name_exact"
+                    break
         # 4. Misma subred /24
-        elif client_ip:
+        if not match and client_ip:
             try:
                 net = ipaddress.ip_network(client_ip + "/24", strict=False)
                 for ip_addr, dev in ip_map.items():
@@ -98,18 +98,22 @@ def associate_clients_to_devices(
         if not match and client_name:
             best_ratio = 0.0
             best_dev = None
-            for name_key, dev in name_map.items():
-                ratio = SequenceMatcher(None, client_name, name_key).ratio()
-                if ratio > best_ratio:
-                    best_ratio, best_dev = ratio, dev
-            if best_ratio >= fuzzy_threshold:
+            for dev in uisp_devices:
+                dev_name = dev.get("identification", {}).get("name")
+                if dev_name:
+                    ratio = SequenceMatcher(
+                        None, client_name.lower(), dev_name.lower()
+                    ).ratio()
+                    if ratio > best_ratio:
+                        best_ratio = ratio
+                        best_dev = dev
+            if best_ratio >= fuzzy_threshold and best_dev:
                 match = best_dev
                 method = "name_fuzzy"
                 similarity = round(best_ratio, 2)
 
-        # Construir entry de salida
         entry: Dict = {
-            "cliente_nombre": str(row.get("nombre") or row.get("name") or "").strip(),
+            "cliente_nombre": client_name,
             "plan": str(row.get("plan") or "").strip(),
             "ip": client_ip,
             "cliente_mac": client_mac,
@@ -126,6 +130,7 @@ def associate_clients_to_devices(
                     "hostname": identification.get("hostname"),
                     "uisp_ip": match.get("ipAddress"),
                     "uisp_mac": match.get("mac") or identification.get("mac"),
+                    "uisp_name": identification.get("name"),
                 }
             )
 
