@@ -1,4 +1,5 @@
-// frontend/components/ui/Alert.jsx
+// File: frontend/components/ui/Alert.jsx
+
 export default function Alert({ severity = 'info', title, children }) {
   const colors = {
     info: 'bg-blue-100 text-blue-900',

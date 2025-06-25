@@ -3,8 +3,8 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import ReactFlow, { MiniMap, Controls, Background } from 'react-flow-renderer';
 import dagre from 'dagre';
-import { Spinner } from '@/components/ui/Spinner';    // Ajustá import según tu proyecto
-import { Alert } from '@/components/ui/Alert';        // Ajustá import según tu proyecto
+import Spinner from './ui/Spinner';
+import Alert from './ui/Alert';
 
 // ──────────────────────────────
 // Configuración Dagre
@@ -17,7 +17,9 @@ function applyLayout(nodes, edges) {
   g.setDefaultEdgeLabel(() => ({}));
   g.setGraph({ rankdir: 'LR' });
 
-  nodes.forEach((n) => g.setNode(n.id, { width: nodeWidth, height: nodeHeight }));
+  nodes.forEach((n) =>
+    g.setNode(n.id, { width: nodeWidth, height: nodeHeight })
+  );
   edges.forEach((e) => g.setEdge(e.source, e.target));
   dagre.layout(g);
 
@@ -50,14 +52,16 @@ export default function Topologia({ seedIps }) {
       setLoading(true);
       setError(null);
       try {
-        const res = await fetch('http://localhost:8000/api/monitoring/topology', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ ip_list: seedIps }),
-        });
+        const res = await fetch(
+          'http://localhost:8000/api/monitoring/topology',
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ ip_list: seedIps }),
+          }
+        );
         if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
         const data = await res.json();
-        // Asumimos que el payload viene con data.nodes y data.edges
         setRawNodes(data.nodes || []);
         setRawEdges(data.edges || []);
       } catch (e) {
@@ -67,15 +71,21 @@ export default function Topologia({ seedIps }) {
         setLoading(false);
       }
     }
-    fetchTopology();
+    if (Array.isArray(seedIps) && seedIps.length) {
+      fetchTopology();
+    } else {
+      setLoading(false);
+      setError('No hay IPs semilla definidas');
+    }
   }, [seedIps]);
 
-  // 2) Map y layout una vez que rawNodes/rawEdges estén
+  // 2) Map y layout una vez que rawNodes/rawEdges estén disponibles
   useEffect(() => {
     if (!Array.isArray(rawNodes) || !Array.isArray(rawEdges)) return;
 
     const mappedNodes = rawNodes.map((n) => {
-      let bg = '#03a9f4', prefix = '';
+      let bg = '#03a9f4',
+        prefix = '';
       switch (n.type) {
         case 'router':
           bg = '#ffeb3b';
@@ -90,7 +100,8 @@ export default function Topologia({ seedIps }) {
           prefix = '🔀';
           break;
         default:
-          prefix = n.signal != null ? `${Math.round(n.signal)}dBm` : '';
+          prefix =
+            n.signal != null ? `${Math.round(n.signal)}dBm` : '';
       }
       return {
         id: n.id,
@@ -119,7 +130,9 @@ export default function Topologia({ seedIps }) {
     setEdges(mappedEdges);
   }, [rawNodes, rawEdges]);
 
-  const onNodeClick = useCallback((_, node) => setSelected(node.data.full), []);
+  const onNodeClick = useCallback((_, node) => {
+    setSelected(node.data.full);
+  }, []);
 
   // 3) Renderizado con fallbacks
   if (loading) {
@@ -131,16 +144,27 @@ export default function Topologia({ seedIps }) {
   }
 
   if (error) {
-    return <Alert severity="error">Error al cargar la topología: {error}</Alert>;
+    return (
+      <Alert severity="error">
+        Error al cargar la topología: {error}
+      </Alert>
+    );
   }
 
   if (!Array.isArray(nodes) || nodes.length === 0) {
-    return <Alert severity="warning">No se obtuvo topología o está vacía.</Alert>;
+    return (
+      <Alert severity="warning">
+        No se obtuvo topología o está vacía.
+      </Alert>
+    );
   }
 
   return (
     <div className="flex w-full h-full">
-      <div className="flex-grow" style={{ width: '100%', height: '100%' }}>
+      <div
+        className="flex-grow"
+        style={{ width: '100%', height: '100%' }}
+      >
         <ReactFlow
           nodes={nodes}
           edges={edges}
@@ -148,7 +172,10 @@ export default function Topologia({ seedIps }) {
           fitView
           style={{ width: '100%', height: '100%' }}
         >
-          <MiniMap nodeColor={(n) => n.style.background} nodeStrokeColor={(n) => n.style.background} />
+          <MiniMap
+            nodeColor={(n) => n.style.background}
+            nodeStrokeColor={(n) => n.style.background}
+          />
           <Controls />
           <Background gap={14} />
         </ReactFlow>
@@ -156,14 +183,33 @@ export default function Topologia({ seedIps }) {
       {selected && (
         <aside className="w-80 bg-white text-black p-4 shadow-xl overflow-auto">
           <h2 className="text-lg font-bold mb-2">Detalles</h2>
-          <p><strong>ID:</strong> {selected.id}</p>
-          <p><strong>Tipo:</strong> {selected.type}</p>
-          {selected.port && <p><strong>Puerto:</strong> {selected.port}</p>}
-          {selected.link_speed && <p><strong>Link Speed:</strong> {selected.link_speed}</p>}
-          {selected.degraded && (
-            <p className="text-red-600 font-semibold">⚠ Enlace degradado</p>
+          <p>
+            <strong>ID:</strong> {selected.id}
+          </p>
+          <p>
+            <strong>Tipo:</strong> {selected.type}
+          </p>
+          {selected.port && (
+            <p>
+              <strong>Puerto:</strong> {selected.port}
+            </p>
           )}
-          {selected.signal && <p><strong>Señal:</strong> {selected.signal} dBm</p>}
+          {selected.link_speed && (
+            <p>
+              <strong>Link Speed:</strong>{' '}
+              {selected.link_speed}
+            </p>
+          )}
+          {selected.degraded && (
+            <p className="text-red-600 font-semibold">
+              ⚠ Enlace degradado
+            </p>
+          )}
+          {selected.signal && (
+            <p>
+              <strong>Señal:</strong> {selected.signal} dBm
+            </p>
+          )}
           <button
             className="mt-4 px-4 py-2 bg-red-600 text-white rounded"
             onClick={() => setSelected(null)}
