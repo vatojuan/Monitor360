@@ -54,7 +54,8 @@ def associate_clients_to_devices(
     ip_map = {dev.get("ipAddress"): dev for dev in uisp_devices if dev.get("ipAddress")}
     mac_map = {}
     for dev in uisp_devices:
-        mac = (dev.get("mac") or dev.get("identification", {}).get("mac", "")).lower()
+        raw_mac = dev.get("mac") or dev.get("identification", {}).get("mac")
+        mac = raw_mac.lower() if isinstance(raw_mac, str) else ""
         if mac:
             mac_map[mac] = dev
 
