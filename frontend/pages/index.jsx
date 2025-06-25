@@ -1,6 +1,10 @@
 // File: frontend/pages/index.jsx
+'use client';
+
 import { useEffect, useState } from 'react';
 import Topologia from '../components/Topologia';
+import Spinner from '../components/ui/Spinner';
+import Alert from '../components/ui/Alert';
 
 export default function HomePage() {
   const [data, setData] = useState({ nodes: [], edges: [] });
@@ -8,7 +12,7 @@ export default function HomePage() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    (async () => {
+    const fetchTopology = async () => {
       setLoading(true);
       setError(null);
       try {
@@ -17,40 +21,43 @@ export default function HomePage() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ ip_list: ['45.172.141.122', '45.172.141.35'] }),
         });
+
         if (!res.ok) {
-          const errText = await res.text();
-          throw new Error(`HTTP ${res.status}: ${errText}`);
+          throw new Error(`HTTP ${res.status} ${await res.text()}`);
         }
+
         const json = await res.json();
-        setData({ nodes: json.nodes || [], edges: json.edges || [] });
-      } catch (err) {
-        console.error('Error al obtener topología', err);
-        setError(err.message);
+        setData({ nodes: json.nodes ?? [], edges: json.edges ?? [] });
+      } catch (e) {
+        setError(e.message);
       } finally {
         setLoading(false);
       }
-    })();
+    };
+
+    fetchTopology();
   }, []);
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center w-screen h-screen">
-        <div className="text-xl">🔄 Cargando topología…</div>
+      <div className="flex h-screen w-screen items-center justify-center">
+        <Spinner> Cargando topología… </Spinner>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="flex flex-col items-center justify-center w-screen h-screen p-4">
-        <div className="mb-4 text-red-600 font-semibold">Error al cargar la topología:</div>
-        <pre className="bg-gray-100 p-4 rounded">{error}</pre>
+      <div className="flex h-screen w-screen items-center justify-center p-4">
+        <Alert severity="error" title="Error al cargar">
+          {error}
+        </Alert>
       </div>
     );
   }
 
   return (
-    <div className="w-screen h-screen overflow-hidden">
+    <div className="h-screen w-screen overflow-hidden">
       <Topologia nodes={data.nodes} edges={data.edges} />
     </div>
   );
